@@ -22,48 +22,28 @@ $(document).ready(function() {
       }
     });
   });
-
+  
   function show(){
 
-     var person1 = {
-      img : "./img/images/categ_lashes_home@1x.png",
-      title:"Lashes & brows",
-      description : "- Event makeup </br>- Make up workshop</br>- Makeup with test</br>- Nude makeup</br>- Fashion makeup</br>- Our makeup artists",
-    };
-    var person2 = {
-      img :"./img/images/categ_nails_home@1x.png",
-      title :"Nails & more",
-    description :"- Event makeup </br>- Make up workshop</br>- Makeup with test</br>- Nude makeup</br>- Fashion makeup</br>- Our makeup artists",
-    };
-    var person3 = {
-      img :"./img/images/categ_haire_style_home@1x.png",
-      title :"Haire style",
-    description :"- Brushing of Ay-to-d'Ay </br>- Event hairstyle</br>- trundy brushing</br>- Hairstyle with test</br>- Bun or attached</br>- Our hairdressers",
-    };
-    var person4 = {
-      img :"./img/images/categ_wax_home@1x.png",
-      title :"Categ Home",
-    description :"- Brushing of Ay-to-d'Ay </br>- Event hairstyle</br>- trundy brushing</br>- Hairstyle with test</br>- Bun or attached</br>- Our hairdressers",
-    };
-    var person5 = {
-      img :"./img/images/categ_goming_soon_home@1x.png",
-      title :"Categ Soon",
-      description :"- Brushing of Ay-to-d'Ay </br>- Event hairstyle</br>- trundy brushing</br>- Hairstyle with test</br>- Bun or attached</br>- Our hairdressers",
-    };
- var tabCateg =[person1,person2,person3,person4,person5];
-     var html = '<div class="carousel-item col-md-4 active ">';
-     for(let i=0;i<tabCateg.length;i++){
-      html +='<div class="card">'
-      html +='<img class="card-img-top img-fluid" src='+tabCateg[i].img+' alt="Card image cap">'
-      html +='<div class="card-body">'
-      html +='<h4 class="card-title">'+tabCateg[i].title+'</h4>'
-      html += '<p class="card-text">'+tabCateg[i].description+'</p>'
-      html += '</div>'
-      html +='</div>'
-      html +='</div>'
-      document.getElementById("SlideCateg").innerHTML += html;
-      html = '<div class="carousel-item col-md-4 ">'
-        console.log(html);
-    }
+      $.getJSON("https://jsonp.afeld.me/?url=https://api.myglamapp.pl/api/categories?language=EN", function(result){
+  
+  console.log(result);
+  var articles = result.data
+ var html = '<div class="carousel-item col-md-4 active ">';
+ for(let i=0;i<articles.length;i++){
+   console.log(articles[i].imagePath)
+  html +='<div class="card">'
+  html +='<img class="card-img-top img-fluid" src="http://'+articles[i].imagePath+'" alt="Card image cap">'
+  html +='<div class="card-body">'
+  html +='<h4 class="card-title">'+articles[i].label+'</h4>'
+  html += '<p class="card-text">'+articles[i].description+'</p>'
+  html += '</div>'
+  html +='</div>'
+  html +='</div>'
+  document.getElementById("SlideCateg").innerHTML += html;
+  html = '<div class="carousel-item col-md-4 ">' 
+}
+  });
   }
+
   
