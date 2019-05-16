@@ -22,7 +22,7 @@ $(document).ready(function() {
       }
     });
   });
-  
+
   function show(){
 
       $.getJSON("https://jsonp.afeld.me/?url=https://api.myglamapp.pl/api/categories?language=EN", function(result){
